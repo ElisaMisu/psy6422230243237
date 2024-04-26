@@ -55,7 +55,7 @@ view(filtered_data)
 p <- ggplot(filtered_data, aes(x = sexual_orientation, y = percentage / 100, fill = Religion, text = paste("Percentage:", scales::percent(percentage / 100)))) +
   geom_bar(stat = "identity", position = "stack") +
   coord_flip() +
-  labs(title = "Religious Identity by Sexual Orientation",
+  labs(title = "Sexual Orientation and Religious Identity",
        x = "Sexual Orientation",
        y = "Percentage") +
   scale_y_continuous(labels = percent_format()) +
