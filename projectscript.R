@@ -14,7 +14,7 @@ for (pkg in packages) {
 # Define the path to the Excel file using the here() function
 # starting with the file path
 
-excel_file <- here("sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021.xlsx")
+excel_file <- here("data", "sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021.xlsx")
 
 # Reading the data from the sheet 2a of the Excel file, skipping the first 4 rows
 # and assigning appropriate column types
