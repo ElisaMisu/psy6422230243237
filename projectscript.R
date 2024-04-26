@@ -27,7 +27,7 @@ sexualorientationreligion <- read_excel(excel_file,
 View(sexualorientationreligion)
 
 # Error message resulting from [c] in numeric column, explanation: Values under 10 have been suppressed and are displayed as "[c]".
-# Solution: Remove rows with "[c]" in any column 
+# Solution: Remove rows with "[c]" in any column/ keep all that do not contain [c] 
 
 sexualorientationreligion_clean <- sexualorientationreligion[!apply(sexualorientationreligion, 1, function(x) any(grepl("\\[c\\]", x))), ]
 
@@ -41,12 +41,12 @@ sexualorientationreligion_clean <- rename(sexualorientationreligion_clean,
 
 view(sexualorientationreligion_clean)
 
-# Filtering data using dplyr's filter
+# Filtering data using dplyr's filter 
 
 filtered_data <- sexualorientationreligion_clean %>%
   filter(sexual_orientation != "All usual residents", #exclude all usual residents line
          age == "All ages 16 years and over", #include all ages (instead of age group breakdowns)
-         sex == "People")  #just include all people instead of breakdown of sex
+         sex == "People")  #just include all "people" instead of breakdown of sex
 
 view(filtered_data)
 
