@@ -62,6 +62,7 @@ p <- ggplot(filtered_data, aes(x = sexual_orientation, y = percentage / 100, fil
   scale_fill_brewer(palette = "Pastel1") +
   theme_light() +
   theme(legend.position = "bottom")
+  
 
 # Convert to interactive plotly object
 

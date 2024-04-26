@@ -1,17 +1,17 @@
 # psy6422230243237
  Data visualisation project 23-24
 
-## Project Title: Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales
+## Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales
 
 ### Project Description 
 
-This is the repository for a data visualisation project submitted towards a MSc degree at the University of Sheffield. The project aims to explore the relationship between sexual orientation and religion across England and Wales. The project uses data from the 2021 ONS consensus to create a visualisation that explores the relationship between sexual orientation and religion. The project uses a range of RStudio packages including tidyverse, scales and plotly. The final visualisation is interactive and allows users to explore the data in more detail.
+This is the repository for a data visualisation project submitted towards a MSc degree at the University of Sheffield. The project aims to explore the relationship between sexual orientation and religion across England and Wales. The project utilises 2021 ONS census data, along with RStudio packages 'tidyverse', 'scales', and 'plotly', to create an interactive visualisation exploring the intersection of sexual orientation and religious identity.
 
 ### Table of contents:
 
 1. **Index** _This file contains the RMardown code for the project_
 2. **sexualorientationfurthercharacteristics** _This xlsx file is the original data used in the project_
-3. 
+3. **
 
 
 data source: 
