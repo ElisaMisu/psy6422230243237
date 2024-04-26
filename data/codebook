@@ -1,0 +1,29 @@
+Full metadata can be found in the xlsx file, information appropriate to the data used is provided below.
+
+Dataset Title: Sexual Orientation and Further Personal Characteristics, Census 2021
+
+Scope: England and Wales
+
+Release Date: 1 November 2023
+
+Census Date: 21 March 2021
+
+Content: Data  derived from 'Sheet 2a' of the Census 2021 release. This dataset includes self-report chararcteristics of individuals 16 years and older classified by sexual orientation, alongside religion, gender, age, and location.
+
+Notes pulled from metadata: 
+-Sex was recorded by the person completing the census. The options were “Female” and “Male”.
+-A person's age is their age at their last birthday before Census Day, 21 March 2021 in England and Wales.
+-Values under 10 have been suppressed and are displayed as "[c]".
+-Percentages have been rounded to 2 decimal points. Because of this, totals may not add up to exactly 100%.
+
+Variable definitions given by ONS:
+
+-Religion defined as:	"The religion people connect or identify with (their religious affiliation), whether or not they practise or have belief in it. This question was voluntary, and the variable includes people who answered the question, including “No religion”, alongside those who chose not to answer this question. This variable classifies responses into the eight tick-box response options. Write-in responses are classified by their ""parent"" religious affiliation, including “No religion”, where applicable."
+
+- Sexual orientation defined as: "Sexual orientation is an umbrella term covering sexual identity, attraction, and behaviour. For an individual respondent, these may not be the same. For example, someone in an opposite-sex relationship may also experience same-sex attraction, and vice versa. This means the statistics should be interpreted purely as showing how people responded to the question, rather than being about whom they  attracted to or their actual relationships.
+We have not provided glossary entries for individual sexual orientation categories. This is because individual respondents may have differing perspectives on the exact meaning."
+
+
+
+
+Confidentiality: Managed by the Office for National Statistics (ONS), the dataset adheres to legal confidentiality standards, with measures in place to protect personal data from disclosure.
