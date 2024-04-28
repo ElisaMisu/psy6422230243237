@@ -63,7 +63,7 @@ Warning message:
 Expecting numeric in G426 / R426C7: got '[c]'
 ```
 
-After consulting the ONS metadata I discovered that '[c]' was in the column if the value was less than 10 so it was suppressed. To correct this I created a cleaned data frame where all cells not including [c] were retained while those including [c] were excluded. Following that I renamed the variables, see code below.
+After consulting the ONS metadata I discovered that '[c]' was in the column if the value was less than 10 so it was suppressed. To correct this I created a cleaned dataframe where all cells not including [c] were retained while those including [c] were excluded. Following that I renamed the variables, see code below.
 
 ``` r
 sexualorientationreligion_clean <- rename(sexualorientationreligion_clean,    
@@ -73,7 +73,7 @@ sexualorientationreligion_clean <- rename(sexualorientationreligion_clean,
                                              "percentage" = "Percentage estimate of group \r\n[note 3] [note 4]"))
 ```
 
-I then used the *dplyr* filtering function to create a new data frame including only the data that was necessary for the final plot.
+I then used the *dplyr* filtering function to create a new dataframe including only the data that was necessary for the final plot.
 
 ``` r
 filtered_data <- sexualorientationreligion_clean %>%
@@ -82,9 +82,19 @@ filtered_data <- sexualorientationreligion_clean %>%
          sex == "People")  
 ```
 
+*filtered_data* is the new dataframe created to store the result of *dplyr'*s filtering operation. This new dataframe contains only the rows from sexualorientationreligion_clean that meet the specified conditions. The pipe operator passes the *sexualorientationreligion_clean* dataframe into the next function, *filter()* which specifies the following conditions:
+
+-   *sexual_orientation != "All usual residents"* excludes the columns under *sexual_orientation* containing the listed value including only the breakdown of sexual orientations rather than the total of all.
+
+-   *age == "All ages 16 years and over"* ensures that only
+    rows where the age column exactly matches "All ages 16 years and
+    over" are retained, excluding the columns breaking the data down by age group.
+
+-   *sex == "People"* filters to include only rows where the sex column has the value "People", excluding any rows that might have other breakdowns by sex.
+
 ## Filtered data
 
-![](table.png){width="550"}
+![](table.png){width="561"}
 
 ## Plot
 
