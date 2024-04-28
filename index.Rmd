@@ -16,7 +16,9 @@ The data was a product of the 2021 census – the sheets downloaded contained ot
 
 The decision to focus on religion and sexual orientation came after a recent discussion that ensued after sharing religious school experiences with friends and colleagues. The question being that, even if one found themselves of a sexual orientation that was deemed anathema by their church/religion, would they still identify with that religion? (which inevitably led to many other questions, outlined below under follow-up). Some churches and religious branches are now very progressive, but a religion, in its very nature, cannot be. Before scrolling through the ONS website I proposed that the data would represent this with a higher percentage of LGBTQIA+ groups identifying as not religious than the heterosexual population.
 
-## Preparing the data 
+## Project script
+
+#### Packages and importing the dataset
 
 I developed a loop to automatically check the installation of necessary packages, ensuring the script can operate seamlessly on any system without manual adjustments. I first established the *packages* object, which includes the names of all required packages for the project script.
 
@@ -52,6 +54,45 @@ sexualorientationreligion <- read_excel(excel_file,
 
 After which sheet 2a of the file is read into the session skipping the top 4 rows and first column then defining which columns are text/numeric.
 
+#### Preparing the data
+
+After viewing the dataset to ensure that the correct columns/rows had been imported and all observations were there, I then began cleaning and filtering. The console was displaying the following warning.
+
+``` r
+Warning message:
+Expecting numeric in G426 / R426C7: got '[c]'
+```
+
+After consulting the ONS metadata I discovered that [c] was
+
 ## Filtered data
 
 ![](table.png)
+
+## Plot
+
+```{r plot_chunk, echo=FALSE}
+library(plotly)
+p <- ggplot(filtered_data, aes(x = sexual_orientation, y = percentage / 100, fill = Religion, text = paste("Percentage:", scales::percent(percentage / 100)))) +
+  geom_bar(stat = "identity", position = "stack") +
+  coord_flip() +
+  labs(title = "Sexual Orientation and Religious Identity",
+       x = "Sexual Orientation",
+       y = "Percentage") +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_brewer(palette = "Pastel1") +
+  theme_light() +
+  theme(legend.position = "bottom")
+  
+
+# Convert to interactive plotly object
+
+interactive_plot <- ggplotly(p, tooltip = "text")  # specify tooltip to display percentage values
+
+
+
+
+interactive_plot
+```
+
+## Future work and follow-up
