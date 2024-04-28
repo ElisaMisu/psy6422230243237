@@ -8,12 +8,14 @@ date: "2024-04-25"
 
 ## Data
 
-The data for this project was downloaded from the Office for National Statistics website (link in references). The original file included in the data file of the GitHub repository for this project includes the code book and metadata on sheets on the corresponding sheets.
+The data for this project was downloaded from the Office for National Statistics website (link in references). The original file ( which can be found in the GitHub repository's data file) includes the code book and metadata on sheets on the corresponding sheets.
 
-the data was a product of the 2021 census – the sheets downloaded contained many variables including.... after looking
+The data was a product of the 2021 census – the sheets downloaded contained other demographic data that were collected alongside sexual orientation at the point of the census including: age, sex, employment status, smoking habits and general health.
 
 ## Research question
 
-## Filtered data
+The decision to focus on religion and sexual orientation came after a recent discussion that ensued after sharing religious school experiences with friends and colleagues. The question being that, even if one found themselves of a sexual orientation that was deemed anathema by their church/religion, would they still identify with that religion? (which inevitably led to many other questions, outlined below under follow-up) Some churches and religious branches are now very progressive, but a religion, in its very nature, cannot be. Before scrolling through the ONS website I proposed that the data would represent this with a higher percentage of LGBTQIA+ groups identifying as not religious than the heterosexual population.
+
+##   Filtered data
 
 ![](table.png)
