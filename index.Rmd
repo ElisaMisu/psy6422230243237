@@ -8,13 +8,36 @@ date: "2024-04-25"
 
 ## Data
 
-The data for this project was downloaded from the Office for National Statistics website (link in references). The original file ( which can be found in the GitHub repository's data file) includes the code book and metadata on sheets on the corresponding sheets.
+The data for this project was downloaded from the Office for National Statistics website (link in references). The original file (which can be found in the GitHub repository's data file) includes the code book and metadata on sheets on the corresponding sheets.
 
 The data was a product of the 2021 census – the sheets downloaded contained other demographic data that were collected alongside sexual orientation at the point of the census including: age, sex, employment status, smoking habits and general health.
 
 ## Research question
 
 The decision to focus on religion and sexual orientation came after a recent discussion that ensued after sharing religious school experiences with friends and colleagues. The question being that, even if one found themselves of a sexual orientation that was deemed anathema by their church/religion, would they still identify with that religion? (which inevitably led to many other questions, outlined below under follow-up) Some churches and religious branches are now very progressive, but a religion, in its very nature, cannot be. Before scrolling through the ONS website I proposed that the data would represent this with a higher percentage of LGBTQIA+ groups identifying as not religious than the heterosexual population.
+
+## Preparing the data 
+
+I developed a loop to automatically check the installation of necessary packages, ensuring the script can operate seamlessly on any system without manual adjustments. Initially, I established the *packages* object, which includes the names of all required packages for the project script.
+
+``` R
+packages <- c("here", "readxl", "tidyverse", "shiny", "vcd", "viridis", "scales", "plotly")
+```
+
+The *for* loop iterates over each package vector element, using the variable *pkg* to hold the current package name in each iteration.
+
+``` R
+for (pkg in packages) {
+  if (!require(pkg, character.only = TRUE, quietly = TRUE)) {
+    install.packages(pkg)
+    library(pkg, character.only = TRUE)
+  }
+}
+```
+
+Inside the loop, the *require()* function checks if the package named by *pkg* is installed and can be loaded. The *character.only = TRUE* argument specifies that *pkg* is a character string (the name of the package). While the *quietly = TRUE* argument suppresses warnings and other messages (to keep the console output clean as it's checking for multiple packages). If *require()* returns *FALSE* (the package is not available), *install.packages(pkg)* is called to install the package.
+
+After installing necessary packages*, library()* is used to load all of them into the session. The *character.only = TRUE* argument again indicates that *pkg* is a character string.
 
 ##   Filtered data
 
