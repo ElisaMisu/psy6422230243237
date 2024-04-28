@@ -1,7 +1,7 @@
 ---
 title: "Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales"
 output: html_document
-date: "2024-04-25"
+date: 
 ---
 
 # Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales
@@ -14,19 +14,19 @@ The data was a product of the 2021 census – the sheets downloaded contained ot
 
 ## Research question
 
-The decision to focus on religion and sexual orientation came after a recent discussion that ensued after sharing religious school experiences with friends and colleagues. The question being that, even if one found themselves of a sexual orientation that was deemed anathema by their church/religion, would they still identify with that religion? (which inevitably led to many other questions, outlined below under follow-up) Some churches and religious branches are now very progressive, but a religion, in its very nature, cannot be. Before scrolling through the ONS website I proposed that the data would represent this with a higher percentage of LGBTQIA+ groups identifying as not religious than the heterosexual population.
+The decision to focus on religion and sexual orientation came after a recent discussion that ensued after sharing religious school experiences with friends and colleagues. The question being that, even if one found themselves of a sexual orientation that was deemed anathema by their church/religion, would they still identify with that religion? (which inevitably led to many other questions, outlined below under follow-up). Some churches and religious branches are now very progressive, but a religion, in its very nature, cannot be. Before scrolling through the ONS website I proposed that the data would represent this with a higher percentage of LGBTQIA+ groups identifying as not religious than the heterosexual population.
 
 ## Preparing the data 
 
-I developed a loop to automatically check the installation of necessary packages, ensuring the script can operate seamlessly on any system without manual adjustments. Initially, I established the *packages* object, which includes the names of all required packages for the project script.
+I developed a loop to automatically check the installation of necessary packages, ensuring the script can operate seamlessly on any system without manual adjustments. I first established the *packages* object, which includes the names of all required packages for the project script.
 
-``` R
+``` r
 packages <- c("here", "readxl", "tidyverse", "shiny", "vcd", "viridis", "scales", "plotly")
 ```
 
 The *for* loop iterates over each package vector element, using the variable *pkg* to hold the current package name in each iteration.
 
-``` R
+``` r
 for (pkg in packages) {
   if (!require(pkg, character.only = TRUE, quietly = TRUE)) {
     install.packages(pkg)
@@ -37,8 +37,21 @@ for (pkg in packages) {
 
 Inside the loop, the *require()* function checks if the package named by *pkg* is installed and can be loaded. The *character.only = TRUE* argument specifies that *pkg* is a character string (the name of the package). While the *quietly = TRUE* argument suppresses warnings and other messages (to keep the console output clean as it's checking for multiple packages). If *require()* returns *FALSE* (the package is not available), *install.packages(pkg)* is called to install the package.
 
-After installing necessary packages*, library()* is used to load all of them into the session. The *character.only = TRUE* argument again indicates that *pkg* is a character string.
+After installing necessary packages*, library()* is used to load all of them into the session. The *character.only = TRUE* argument again, indicates that *pkg* is a character string.
 
-##   Filtered data
+The following code then defines the path to the xlxs file using the *here() function.*
+
+``` r
+excel_file <- here("data", "sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021.xlsx")
+
+sexualorientationreligion <- read_excel(excel_file, 
+                                        sheet = "2a", 
+                                        col_types = c("skip", "text", "text", "text", "text", "text", "numeric"), 
+                                        skip = 4)
+```
+
+After which sheet 2a of the file is read into the session skipping the top 4 rows and first column then defining which columns are text/numeric.
+
+## Filtered data
 
 ![](table.png)
