@@ -1,6 +1,9 @@
 ---
 title: "Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales"
 output: html_document
+df_print: paged
+toc: TRUE
+code_folding: TRUE
 date: 
 ---
 
@@ -22,13 +25,13 @@ The decision to focus on religion and sexual orientation came after a recent dis
 
 I developed a loop to automatically check the installation of necessary packages, ensuring the script can operate seamlessly on any system without manual adjustments. I first established the *packages* object, which includes the names of all required packages for the project script.
 
-``` r
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 packages <- c("here", "readxl", "tidyverse", "shiny", "vcd", "viridis", "scales", "plotly")
 ```
 
 The *for* loop iterates over each package vector element, using the variable *pkg* to hold the current package name in each iteration.
 
-``` r
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 for (pkg in packages) {
   if (!require(pkg, character.only = TRUE, quietly = TRUE)) {
     install.packages(pkg)
@@ -43,13 +46,25 @@ After installing necessary packages*, library()* is used to load all of them int
 
 The following code then defines the path to the xlxs file using the *here() function.*
 
-``` r
+```{r echo=TRUE, message=FALSE, paged.print=TRUE}
 excel_file <- here("data", "sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021.xlsx")
+
 
 sexualorientationreligion <- read_excel(excel_file, 
                                         sheet = "2a", 
                                         col_types = c("skip", "text", "text", "text", "text", "text", "numeric"), 
                                         skip = 4)
+```
+
+
+```{r interactive_table_1, echo=FALSE, message=FALSE, warning=FALSE}
+library(DT)
+
+datatable(sexualorientationreligion,
+  options = list(pageLength = 5, autoWidth = TRUE),
+  caption = "Raw Data")
+
+    
 ```
 
 After which sheet 2a of the file is read into the session skipping the top 4 rows and first column then defining which columns are text/numeric.
@@ -63,21 +78,29 @@ Warning message:
 Expecting numeric in G426 / R426C7: got '[c]'
 ```
 
-After consulting the ONS metadata I discovered that '[c]' was in the column if the value was less than 10 so it was suppressed. To correct this I created a cleaned dataframe where all cells not including [c] were retained while those including [c] were excluded. Following that I renamed the variables, see code below.
+After consulting the ONS metadata I discovered that '[c]' was in the column if the value was less than 10 so it was suppressed. To correct this I created a cleaned dataframe where all cells not including [c] were retained while those including [c] were excluded.
 
-``` r
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+sexualorientationreligion_clean <- sexualorientationreligion[!apply(sexualorientationreligion, 1, function(x) any(grepl("\\[c\\]", x))), ]
+
+```
+
+Following that I renamed the variables, see code below.
+
+```{r paged.print=TRUE, echo=TRUE}
 sexualorientationreligion_clean <- rename(sexualorientationreligion_clean,    
                                           c( "sexual_orientation" = "Sexual orientation", 
                                              "age" = "Age group [note 2]" , 
                                              "sex" = "Sex [note 1]", 
                                              "percentage" = "Percentage estimate of group \r\n[note 3] [note 4]"))
+
 ```
 
 I then used the *dplyr* filtering function to create a new dataframe including only the data that was necessary for the final plot.
 
-``` r
+```{r}
 filtered_data <- sexualorientationreligion_clean %>%
-  filter(sexual_orientation != "All usual residents",
+  filter(sexual_orientation != "All usual residents", 
          age == "All ages 16 years and over", 
          sex == "People")  
 ```
@@ -86,72 +109,24 @@ filtered_data <- sexualorientationreligion_clean %>%
 
 -   *sexual_orientation != "All usual residents"* excludes the columns under *sexual_orientation* containing the listed value including only the breakdown of sexual orientations rather than the total of all.
 
--   *age == "All ages 16 years and over"* ensures that only
-    rows where the age column exactly matches "All ages 16 years and
-    over" are retained, excluding the columns breaking the data down by age group.
+-   *age == "All ages 16 years and over"* ensures that only rows where the age column exactly matches "All ages 16 years and over" are retained, excluding the columns breaking the data down by age group.
 
 -   *sex == "People"* filters to include only rows where the sex column has the value "People", excluding any rows that might have other breakdowns by sex.
 
 ## Filtered data
 
-![](table.png){width="561"}
+```{r interactive-table, echo=FALSE, message=FALSE, warning=FALSE}
+# Display the dataframe as an interactive table
+library(DT)
+datatable(filtered_data,
+  options = list(pageLength = 5, autoWidth = TRUE),
+  caption = "Final Dataframe")
 
+
+```
 ## Plot
 
-```{r echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
-# List of packages to check and install if required
-
-packages <- c("here", "readxl", "tidyverse", "shiny", "vcd", "viridis", "scales", "plotly")
-
-# Loop to check and install packages if required (quietly- without warnings)
-
-for (pkg in packages) {
-  if (!require(pkg, character.only = TRUE, quietly = TRUE)) {
-    install.packages(pkg)
-    library(pkg, character.only = TRUE)
-  }
-}
-
-# Define the path to the Excel file using the here() function
-# starting with the file path
-
-excel_file <- here("data", "sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021.xlsx")
-
-# Reading the data from the sheet 2a of the Excel file, skipping the first 4 rows
-# and assigning appropriate column types
-sexualorientationreligion <- read_excel(excel_file, 
-                                        sheet = "2a", 
-                                        col_types = c("skip", "text", "text", "text", "text", "text", "numeric"), 
-                                        skip = 4)
-# View the loaded data
-
-View(sexualorientationreligion)
-
-# Error message resulting from [c] in numeric column, explanation: Values under 10 have been suppressed and are displayed as "[c]".
-# Solution: Remove rows with "[c]" in any column/ keep all that do not contain [c] 
-
-sexualorientationreligion_clean <- sexualorientationreligion[!apply(sexualorientationreligion, 1, function(x) any(grepl("\\[c\\]", x))), ]
-
-# rename the columns, leave "Religion" w/ a capital R ready for the final plot labels
-
-sexualorientationreligion_clean <- rename(sexualorientationreligion_clean,    
-                                          c( "sexual_orientation" = "Sexual orientation", 
-                                             "age" = "Age group [note 2]" , 
-                                             "sex" = "Sex [note 1]", 
-                                             "percentage" = "Percentage estimate of group \r\n[note 3] [note 4]"))
-
-view(sexualorientationreligion_clean)
-
-# Filtering data using dplyr's filter 
-
-filtered_data <- sexualorientationreligion_clean %>%
-  filter(sexual_orientation != "All usual residents", #exclude all usual residents line
-         age == "All ages 16 years and over", #include all ages (instead of age group breakdowns)
-         sex == "People")  #just include all "people" instead of breakdown of sex
-
-view(filtered_data)
-
-#create plot with horizontal bars and pastel colors
+```{r echo=TRUE, fig.height=10, fig.width=10, paged.print=TRUE}
 
 p <- ggplot(filtered_data, aes(x = sexual_orientation, y = percentage / 100, fill = Religion, text = paste("Percentage:", scales::percent(percentage / 100)))) +
   geom_bar(stat = "identity", position = "stack") +
@@ -163,17 +138,13 @@ p <- ggplot(filtered_data, aes(x = sexual_orientation, y = percentage / 100, fil
   scale_fill_brewer(palette = "Pastel1") +
   theme_light() +
   theme(legend.position = "bottom")
-  
 
-# Convert to interactive plotly object
-
-interactive_plot <- ggplotly(p, tooltip = "text")  # specify tooltip to display percentage values
+interactive_plot <- ggplotly(p, tooltip = "text")  
 
 interactive_plot
-
-
-
+  
 ```
+
 
 #### Interpretation
 
