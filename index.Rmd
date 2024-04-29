@@ -11,7 +11,7 @@ date:
 
 ## Data
 
-The data for this project was downloaded from the Office for National Statistics website (link in references). The original file (which can be found in the GitHub repository's data file) includes the code book and metadata on sheets on the corresponding sheets.
+The data for this project was downloaded from the Office for National Statistics [website](https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/sexuality/datasets/sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021). The original file (which can be found in the GitHub repository's data file) includes the code book and metadata on sheets on the corresponding sheets.
 
 The data was a product of the 2021 census – the sheets downloaded contained other demographic data that were collected alongside sexual orientation at the point of the census including: age, sex, employment status, smoking habits and general health.
 
@@ -55,7 +55,6 @@ sexualorientationreligion <- read_excel(excel_file,
                                         col_types = c("skip", "text", "text", "text", "text", "text", "numeric"), 
                                         skip = 4)
 ```
-
 
 ```{r interactive_table_1, echo=FALSE, message=FALSE, warning=FALSE}
 library(DT)
@@ -124,7 +123,12 @@ datatable(filtered_data,
 
 
 ```
+
 ## Plot
+
+#### Creating the plot
+
+The bars in the chart are stacked so the different religious categories for each sexual orientation are piled on top of one another to show the composition within each group. The chart's orientation was flipped using *coord_flip()*, making the bars horizontal instead of vertical to make the chart easier to read. To improve aesthetic and readability, I chose a light theme and a colour palette called "*Pastel1*," which provides subtle yet distinct colours for each religious group. Additionally, the legend, to identify which colours correspond to which religions, is positioned at the bottom of the chart to avoid obscuring any data. I decided after trialling labels on the bars to use the *plotly* library to convert it instead into an interactive visualisation, thus retaining the information without cluttering the plot with too many labels. This transformation allows users to interact with the visualisation directly by hovering over bars to see detailed data labels.
 
 ```{r echo=TRUE, fig.height=10, fig.width=10, paged.print=TRUE}
 
@@ -145,7 +149,10 @@ interactive_plot
   
 ```
 
-
 #### Interpretation
+
+The plot demonstrates that among straight or heterosexual individuals, a majority identify as Christian (51.16%), with a substantial group reporting no religious affiliation (35.92%). In contrast, when we look at individuals identifying as gay or lesbian, there is a noticeable decrease in Christian affiliation (30.77%) compared to heterosexuals, and a significant increase in those reporting no religion (61.92%). This trend is even more pronounced among bisexual individuals, with only 20.76% identifying as Christian and the majority, 65.96%, reporting no religious affiliation. This pattern continues with the ‘other sexual orientation category’, where Christian affiliation stands at 22.24%, and a little over half, 54.56%, identify with no religion at all.
+
+These findings corroborate the initial hypothesis that LGBTQIA+ individuals might be less likely to identify with organized religions, especially Christianity, and more likely to report no religious affiliation, which can be reflective of the historical relationship between religious institutions and the LGBTQIA+ community.
 
 ## Future work and follow-up
