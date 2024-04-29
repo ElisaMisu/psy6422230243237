@@ -1,7 +1,7 @@
 # psy6422230243237
  Data visualisation project 23-24
 
-## Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales
+## Visualising Identity: A Study of Sexual Orientation and Religion Across England and Wales
 
 ### Project Description 
 
