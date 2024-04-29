@@ -1,13 +1,10 @@
 ---
-title: "Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales"
+title: "Visualising Identity: A Study of Sexual Orientation and Religion Across England and Wales"
+
 output: html_document
 df_print: paged
-toc: TRUE
-code_folding: TRUE
-date: 
+date: "`r format(Sys.Date(), '%d %B, %Y')`"
 ---
-
-# Visualizing Identity: A Study of Sexual Orientation and Religion Across England and Wales
 
 ## Data
 
@@ -44,7 +41,7 @@ Inside the loop, the *require()* function checks if the package named by *pkg* i
 
 After installing necessary packages*, library()* is used to load all of them into the session. The *character.only = TRUE* argument again, indicates that *pkg* is a character string.
 
-The following code then defines the path to the xlxs file using the *here() function.*
+The following code then defines the path to the xlxs file using the *here() function.* After which sheet 2a of the file is read into the session skipping the top 4 rows and first column then defining which columns are text/numeric.
 
 ```{r echo=TRUE, message=FALSE, paged.print=TRUE}
 excel_file <- here("data", "sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021.xlsx")
@@ -66,18 +63,16 @@ datatable(sexualorientationreligion,
     
 ```
 
-After which sheet 2a of the file is read into the session skipping the top 4 rows and first column then defining which columns are text/numeric.
-
 #### Preparing the data
 
-After viewing the dataset to ensure that the correct columns/rows had been imported and all observations were there, I then began cleaning and filtering. The console was displaying the following warning.
+Once I had checked the dataset to ensure that the correct columns/rows had been imported and all observations were there, I then began cleaning and filtering. The console was displaying the following warning.
 
 ``` r
 Warning message:
 Expecting numeric in G426 / R426C7: got '[c]'
 ```
 
-After consulting the ONS metadata I discovered that '[c]' was in the column if the value was less than 10 so it was suppressed. To correct this I created a cleaned dataframe where all cells not including [c] were retained while those including [c] were excluded.
+Consulting the ONS metadata I discovered that '[c]' appeared in the cells that were surpressed because they had a value below the threshold. To correct this I created a cleaned dataframe where all cells not including [c] were retained while those including [c] were excluded.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 sexualorientationreligion_clean <- sexualorientationreligion[!apply(sexualorientationreligion, 1, function(x) any(grepl("\\[c\\]", x))), ]
@@ -163,8 +158,6 @@ Looking ahead, it would be interesting to unpack the reasons behind these patter
 
 Some other follow-up questions worth exploring using the same ONS data:
 
-Could there be geographic differences within England and Wales that affect the relationship between religion and sexual orientation?
+-   Could there be geographic differences within England and Wales that affect the relationship between religion and sexual orientation?
 
-How might age or the passing of time influence religious identity within the LGBTQIA+ community?
-
-Investigating these areas could lead to a better understanding and possibly pave the way for a more inclusive environment in religious communities.
+-   How might age or the passing of time influence religious identity within the LGBTQIA+ community?
