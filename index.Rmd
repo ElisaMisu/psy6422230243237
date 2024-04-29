@@ -1,9 +1,10 @@
 ---
-title: "Visualising Identity: A Study of Sexual Orientation and Religion Across England and Wales"
-
-output: html_document
+title: 'Visualising Identity: A Study of Sexual Orientation and Religion Across England
+  and Wales'
+output:
+  pdf_document: default
+  html_document: default
 df_print: paged
-date: "`r format(Sys.Date(), '%d %B, %Y')`"
 ---
 
 ## Data
