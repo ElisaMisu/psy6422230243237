@@ -2,8 +2,8 @@
 title: 'Visualising Identity: A Study of Sexual Orientation and Religion Across England
   and Wales'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 df_print: paged
 ---
 
@@ -162,3 +162,11 @@ Some other follow-up questions worth exploring using the same ONS data:
 -   Could there be geographic differences within England and Wales that affect the relationship between religion and sexual orientation?
 
 -   How might age or the passing of time influence religious identity within the LGBTQIA+ community?
+
+### References
+
+GitHub Repository: <https://github.com/ElisaMisu/psy6422230243237>
+
+GitHub.io project page: <https://elisamisu.github.io/psy6422230243237/>
+
+ONS data: <https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/sexuality/articles/sexualorientationfurtherpersonalcharacteristicsenglandandwales/census2021>
