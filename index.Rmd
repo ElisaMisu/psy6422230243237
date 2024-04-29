@@ -11,7 +11,7 @@ date:
 
 ## Data
 
-The data for this project was downloaded from the Office for National Statistics [website](https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/sexuality/datasets/sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021). The original file (which can be found in the GitHub repository's data file) includes the code book and metadata on sheets on the corresponding sheets.
+The data for this project was downloaded from the Office for National Statistics [website](https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/sexuality/datasets/sexualorientationfurtherpersonalcharacteristicsenglandandwalescensus2021). The original file (which can be found in the GitHub repository for this project) includes the code book and metadata on sheets on the corresponding sheets.
 
 The data was a product of the 2021 census – the sheets downloaded contained other demographic data that were collected alongside sexual orientation at the point of the census including: age, sex, employment status, smoking habits and general health.
 
@@ -151,8 +151,20 @@ interactive_plot
 
 #### Interpretation
 
-The plot demonstrates that among straight or heterosexual individuals, a majority identify as Christian (51.16%), with a substantial group reporting no religious affiliation (35.92%). In contrast, when we look at individuals identifying as gay or lesbian, there is a noticeable decrease in Christian affiliation (30.77%) compared to heterosexuals, and a significant increase in those reporting no religion (61.92%). This trend is even more pronounced among bisexual individuals, with only 20.76% identifying as Christian and the majority, 65.96%, reporting no religious affiliation. This pattern continues with the ‘other sexual orientation category’, where Christian affiliation stands at 22.24%, and a little over half, 54.56%, identify with no religion at all.
+The plot clearly demonstrates that among straight or heterosexual individuals, a majority identify as Christian (51.16%), with a substantial group reporting no religious affiliation (35.92%). In contrast, when we look at individuals identifying as gay or lesbian, there is a noticeable decrease in Christian affiliation (30.77%) compared to heterosexuals, and a significant increase in those reporting no religion (61.92%). This trend is even more pronounced among bisexual individuals, with only 20.76% identifying as Christian and the majority, 65.96%, reporting no religious affiliation. This pattern continues with the other sexual orientation category, where Christian affiliation stands at 22.24%, and a little over half, 54.56%, identify with no religion at all.
 
-These findings corroborate the initial hypothesis that LGBTQIA+ individuals might be less likely to identify with organized religions, especially Christianity, and more likely to report no religious affiliation, which can be reflective of the historical relationship between religious institutions and the LGBTQIA+ community.
+These findings align with the initial hypothesis that LGBTQIA+ individuals might be less likely to identify with organized religions, especially Christianity, and more likely to report no religious affiliation, which can be reflective of the historical relationship between religious institutions and the LGBTQIA+ community.
 
-## Future work and follow-up
+## Future work and follow-up questions
+
+The 2021 ONS Census data provides a snapshot of the intersection between sexual orientation and religious identity in England and Wales. It appears that straight individuals tend to align more with Christianity, whereas those who identify as gay, lesbian, or bisexual are more inclined to indicate no religious ties.
+
+Looking ahead, it would be interesting to unpack the reasons behind these patterns. Questions arise about whether cultural acceptance, personal beliefs, or the openness of religious communities play a role in these choices. Using the same dataset it would be useful to investigate the potential generational shifts in attitude towards religion and sexuality by visualising the data with a breakdown of age groups.
+
+Some other follow-up questions worth exploring using the same ONS data:
+
+Could there be geographic differences within England and Wales that affect the relationship between religion and sexual orientation?
+
+How might age or the passing of time influence religious identity within the LGBTQIA+ community?
+
+Investigating these areas could lead to a better understanding and possibly pave the way for a more inclusive environment in religious communities.

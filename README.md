@@ -9,9 +9,10 @@ This is the repository for a data visualisation project submitted towards a MSc 
 
 ### Table of contents:
 
-1. **Index** _This file contains the RMardown code for the project_
-2. **sexualorientationfurthercharacteristics** _This xlsx file is the original data used in the project_
-3. **
+1. **Index.Rmd** _This file contains the RMardown code for the project_
+2. **data** _This folder contains the raw data used in the project_
+3. **projectscript.R** _This R script contains the code used to clean and visualise the data_
+
 
 
 data source: 
